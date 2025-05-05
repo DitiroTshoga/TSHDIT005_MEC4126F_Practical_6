@@ -10,7 +10,9 @@ What type of ADC does the STM32F051x6 have? How does it operate, i.e. how does i
 
 [NOTE]
 ====
-Place your answer here.
+The STM32F051x6 microcontroller uses a 12-bit Successive Approximation Register (SAR) ADC to convert analog voltages into digital values.
+It operates by sampling the input voltage and using a binary search algorithm to compare it against reference voltages generated internally by a DAC.
+Starting from the most significant bit, the ADC determines each bit based on whether the input is higher or lower than the current approximation.
 ====
 
 *Maximum Score = 3*
@@ -20,7 +22,8 @@ Write down two lines of code that are used to calibrate the ADC?
 
 [,C]
 ----
-place your code here
+ADC1->CR |= ADC_CR_ADCAL;                  // Start calibration
+while (ADC1->CR & ADC_CR_ADCAL !=0);           // Wait until calibration is complete
 ----
 
 *Maximum Score = 2*
@@ -29,8 +32,11 @@ place your code here
 What is the endianness of a word stored in the memory of an STM32F0x1 microcontroller? What does this mean?
 
 [NOTE]
+
 ====
-Place your answer here.
+The STM32F0x1 microcontroller uses little-endian format to store data in memory. 
+This means that the least significant byte is stored at the lowest memory address, and the most significant byte
+is stored at the highest address. 
 ====
 
 *Maximum Score = 2*
@@ -40,7 +46,7 @@ The NVIC has priorities for all the possible interrupts on the SMT32Fx1. Which o
 
 [NOTE]
 ====
-Place your answer here.
+EXTI0_1 has higher priority
 ====
 
 *Maximum Score = 1*
@@ -50,7 +56,9 @@ What is a racing condition and why are they undesirable?
 
 [NOTE]
 ====
-Place your answer here.
+A race condition happens when two or more parts of a program access shared data at the same time, and the final result depends on which program finishes first.
+A race condition is undesirable because it can lead to unpredictable and incorrect program behavior, such as corrupted data, or missed events.
+Since the outcome depends on timing, it can be hard to detect, debug the code.
 ====
 
 *Maximum Score = 2*
@@ -60,8 +68,9 @@ What is DMA and why is it useful?
 
 [NOTE]
 ====
-Place your answer here.
+DMA (Direct Memory Access) is a feature that allows peripherals to transfer
+data directly to or from memory without CPU involvement. It is useful
+because it frees up the CPU to perform other tasks, improves performance, and enables faster data transfers.
 ====
-
 *Maximum Score = 1*
 
